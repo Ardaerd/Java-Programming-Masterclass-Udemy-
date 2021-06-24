@@ -1,3 +1,5 @@
+package Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge;
+
 import java.util.Scanner;
 
 public class main {
@@ -47,7 +49,7 @@ public class main {
         Contact existingContactRecord = mobilePhone.queryContact(name);
 
         if (existingContactRecord == null) {
-            System.out.println("Contact not found.");
+            System.out.println("Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact not found.");
             return;
         }
 
@@ -60,7 +62,7 @@ public class main {
         Contact existingContactRecord = mobilePhone.queryContact(name);
 
         if (existingContactRecord == null) {
-            System.out.println("Contact not found.");
+            System.out.println("Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact not found.");
             return;
         }
 
@@ -76,7 +78,7 @@ public class main {
         Contact existingContactRecord = mobilePhone.queryContact(name);
 
         if (existingContactRecord == null) {
-            System.out.println("Contact not found.");
+            System.out.println("Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact not found.");
             return;
         }
 

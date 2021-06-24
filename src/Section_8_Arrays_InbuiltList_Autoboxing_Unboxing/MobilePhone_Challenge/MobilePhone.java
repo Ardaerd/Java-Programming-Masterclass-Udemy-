@@ -1,3 +1,7 @@
+package Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge;
+
+import Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact;
+
 import java.util.ArrayList;
 
 public class MobilePhone {
@@ -12,7 +16,7 @@ public class MobilePhone {
     public boolean addNewContact(Contact contact) {
         if ((findContact(contact) < 0)) {
             myContacts.add(contact);
-            System.out.println(contact.getName() + ", was added to the My Contact Successfully!!!");
+            System.out.println(contact.getName() + ", was added to the My Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact Successfully!!!");
             return true;
         } else {
             System.out.println(contact.getName() + ", was already added!!!");
@@ -50,7 +54,7 @@ public class MobilePhone {
     private int findContact(String str) {
         for (Contact contact : myContacts) {
             if (contact.getName().equals(str)) {
-                System.out.println("Contact number of " + contact.getName() + ": " + findContact(contact)+1);
+                System.out.println("Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact number of " + contact.getName() + ": " + findContact(contact)+1);
                 return findContact(contact);
             }
         }
