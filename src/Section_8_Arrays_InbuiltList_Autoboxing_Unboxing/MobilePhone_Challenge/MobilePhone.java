@@ -14,12 +14,10 @@ public class MobilePhone {
     }
 
     public boolean addNewContact(Contact contact) {
-        if ((findContact(contact) < 0)) {
+        if ((findContact(contact) == -1)) {
             myContacts.add(contact);
-            System.out.println(contact.getName() + ", was added to the My Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact Successfully!!!");
             return true;
         } else {
-            System.out.println(contact.getName() + ", was already added!!!");
             return false;
         }
     }
@@ -28,10 +26,12 @@ public class MobilePhone {
         int foundPosition = findContact(oldContact);
         if (foundPosition >= 0) {
             myContacts.set(foundPosition, newContact);
-            System.out.println(oldContact.getName() + ", was replaced with " + newContact.getName() + ".");
             return true;
-        } else {
-            System.out.println(oldContact.getName() + ", was not found.");
+        }
+        else if (findContact(newContact.getName()) != -1) {
+            return false;
+        }
+        else {
             return false;
         }
     }
@@ -39,26 +39,24 @@ public class MobilePhone {
     public boolean removeContact(Contact contact) {
         if (!(findContact(contact) < 0)) {
             myContacts.remove(contact);
-            System.out.println(contact.getName() + ", was deleted successfully.");
             return true;
         } else {
-            System.out.println(contact.getName() + ", was not found.");
             return false;
         }
     }
 
     private int findContact(Contact contact) {
-        return myContacts.indexOf(contact);
+        return findContact(contact.getName());
     }
 
     private int findContact(String str) {
-        for (Contact contact : myContacts) {
-            if (contact.getName().equals(str)) {
-                System.out.println("Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.MobilePhone_Challenge.Contact number of " + contact.getName() + ": " + findContact(contact)+1);
-                return findContact(contact);
+        for(int i = 0; i < this.myContacts.size();i++){
+            Contact contact = this.myContacts.get(i);
+            if(contact.getName().equals(str)){
+                return i;
             }
         }
-        return  -1;
+        return -1;
     }
 
     public Contact queryContact(String str) {
@@ -71,6 +69,7 @@ public class MobilePhone {
     }
 
     public void printContacts() {
+        System.out.println("Contact List:");
         for (Contact contact : myContacts) {
             System.out.println((findContact(contact)+1) + ". " + contact.getName() + " -> " + contact.getPhoneNumber());
         }
