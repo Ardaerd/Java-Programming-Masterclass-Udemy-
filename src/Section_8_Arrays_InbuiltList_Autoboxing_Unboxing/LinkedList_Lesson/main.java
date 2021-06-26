@@ -24,11 +24,14 @@ public class main {
         addInOrder(placesToVisit,"Adelaide");
         addInOrder(placesToVisit,"Darwin");
 
-        printList(placesToVisit);
+//        printList(placesToVisit);
 
         addInOrder(placesToVisit,"Alice Springs");
         addInOrder(placesToVisit,"Darwin");
         printList(placesToVisit);
+
+        printMenu();
+        visit(placesToVisit);
 
 
 //        placesToVisit.add(1,"Alice Springs");
@@ -50,6 +53,7 @@ public class main {
     public static void visit(LinkedList<String> cities) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
+        boolean goingForward = true;
         ListIterator<String> listIterator = cities.listIterator();
 
         if (cities.isEmpty()) {
@@ -70,17 +74,35 @@ public class main {
                     break;
 
                 case 1:
+                    if (!goingForward) {
+                        if (listIterator.hasNext())
+                            listIterator.next();
+
+                        goingForward = true;
+                    }
+
                     if (listIterator.hasNext())
                         System.out.println("Now visiting " + listIterator.next());
-                    else
+                    else {
                         System.out.println("Reached the end of the list");
+                        goingForward = true;
+                    }
                     break;
 
                 case 2:
+                    if (goingForward) {
+                        if (listIterator.hasPrevious())
+                            listIterator.previous();
+
+                        goingForward = false;
+                    }
+
                     if (listIterator.hasPrevious())
                         System.out.println("Now visiting " + listIterator.previous());
-                    else
+                    else {
                         System.out.println("We are at the start of the list");
+                        goingForward = false;
+                    }
                     break;
 
                 case 3:
@@ -90,7 +112,13 @@ public class main {
         }
     }
 
-
+    private static void printMenu() {
+        System.out.println("Available actions:\npress");
+        System.out.println("0 - to quit\n" +
+                "1 - go to next city\n" +
+                "2 - go to previous city\n" +
+                "3 - print menu options");
+    }
 
     private static boolean addInOrder(LinkedList<String> linkedList, String newCity) {
         ListIterator<String> stringListIterator = linkedList.listIterator();
