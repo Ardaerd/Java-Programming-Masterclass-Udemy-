@@ -3,25 +3,39 @@ package Section_8_Arrays_InbuiltList_Autoboxing_Unboxing.LinkedList_Lesson;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
         LinkedList<String> placesToVisit = new LinkedList<String>();
-        placesToVisit.add("Sydney");
-        placesToVisit.add("Melbourne");
-        placesToVisit.add("Brisbane");
-        placesToVisit.add("Perth");
-        placesToVisit.add("Canberra");
-        placesToVisit.add("Adelaide");
-        placesToVisit.add("Darwin");
+//        placesToVisit.add("Sydney");
+//        placesToVisit.add("Melbourne");
+//        placesToVisit.add("Brisbane");
+//        placesToVisit.add("Perth");
+//        placesToVisit.add("Canberra");
+//        placesToVisit.add("Adelaide");
+//        placesToVisit.add("Darwin");
+
+        addInOrder(placesToVisit,"Sydney");
+        addInOrder(placesToVisit,"Melbourne");
+        addInOrder(placesToVisit,"Brisbane");
+        addInOrder(placesToVisit,"Perth");
+        addInOrder(placesToVisit,"Canberra");
+        addInOrder(placesToVisit,"Adelaide");
+        addInOrder(placesToVisit,"Darwin");
 
         printList(placesToVisit);
 
-        placesToVisit.add(1,"Alice Springs");
+        addInOrder(placesToVisit,"Alice Springs");
+        addInOrder(placesToVisit,"Darwin");
         printList(placesToVisit);
 
-        placesToVisit.remove(4);
-        printList(placesToVisit);
+
+//        placesToVisit.add(1,"Alice Springs");
+//        printList(placesToVisit);
+//
+//        placesToVisit.remove(4);
+//        printList(placesToVisit);
     }
 
     private static void printList(LinkedList<String> linkedList) {
@@ -32,6 +46,51 @@ public class main {
         }
         System.out.println("=======================");
     }
+
+    public static void visit(LinkedList<String> cities) {
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        ListIterator<String> listIterator = cities.listIterator();
+
+        if (cities.isEmpty()) {
+            System.out.println("No cities in the itinerary");
+            return;
+        } else {
+            System.out.println("Now visiting " + listIterator.next());
+        }
+
+        while (!quit) {
+            int action = scanner.nextInt();
+            scanner.nextLine();
+
+            switch(action) {
+                case 0:
+                    System.out.println("Holiday (Vacation) over");
+                    quit = true;
+                    break;
+
+                case 1:
+                    if (listIterator.hasNext())
+                        System.out.println("Now visiting " + listIterator.next());
+                    else
+                        System.out.println("Reached the end of the list");
+                    break;
+
+                case 2:
+                    if (listIterator.hasPrevious())
+                        System.out.println("Now visiting " + listIterator.previous());
+                    else
+                        System.out.println("We are at the start of the list");
+                    break;
+
+                case 3:
+                    printMenu();
+                    break;
+            }
+        }
+    }
+
+
 
     private static boolean addInOrder(LinkedList<String> linkedList, String newCity) {
         ListIterator<String> stringListIterator = linkedList.listIterator();
@@ -54,5 +113,6 @@ public class main {
             }
         }
         stringListIterator.add(newCity);
+        return true;
     }
 }
