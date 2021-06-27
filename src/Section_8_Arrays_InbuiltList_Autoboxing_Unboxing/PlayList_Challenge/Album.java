@@ -13,5 +13,20 @@ public class Album {
         songs = new ArrayList<Song>();
     }
 
+    public boolean addSong(String titleOfSong, double duration) {
+        if (songs.contains(findSong(titleOfSong)))
+            return false;
+        else {
+            songs.add(new Song(titleOfSong,duration));
+            return true;
+        }
+    }
 
+    public Song findSong(String titleOfSong) {
+        for (Song song : songs) {
+            if(song.getTitle().equals(titleOfSong))
+                return song;
+        }
+        return null;
+    }
 }
